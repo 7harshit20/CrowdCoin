@@ -1,6 +1,5 @@
 import React from 'react'
 import Layout from '../../../components/Layout'
-import campaignFactory from '../../../ethereum/campaignFactory'
 import campaignFunc from '../../../ethereum/campaign'
 import web3 from '../../../ethereum/web3';
 import { Card, Grid, Button } from 'semantic-ui-react';
@@ -9,7 +8,7 @@ import Link from 'next/link'
 
 
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     const campaign = campaignFunc(params.address);
     const summary = await campaign.methods.getSummary().call();
     return {
@@ -24,20 +23,20 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export async function getStaticPaths() {
-    const addresses = await campaignFactory.methods.getCampaign().call();
-    const paths = addresses.map((address) => {
-        return {
-            params: {
-                address
-            }
-        }
-    })
-    return {
-        paths,
-        fallback: false
-    }
-}
+// export async function getStaticPaths() {
+//     const addresses = await campaignFactory.methods.getCampaign().call();
+//     const paths = addresses.map((address) => {
+//         return {
+//             params: {
+//                 address
+//             }
+//         }
+//     })
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
 
 export default ({ manager, minContribution, reqSize, aprSize, balance, address }) => {
 

@@ -7,7 +7,7 @@ import Layout from '../components/Layout';
 
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const campaigns = await campaignFactory.methods.getCampaign().call();
     return {
         props: {
