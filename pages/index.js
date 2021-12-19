@@ -36,7 +36,8 @@ const index = ({ campaigns }) => {
                     <Link href={`/campaign/${address}`}>
                         <a> View Campaign </a>
                     </Link>,
-                fluid: true
+                fluid: true,
+                style: { overflowWrap: 'break-word' }
             };
         });
         return <Card.Group items={items} />
